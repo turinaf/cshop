@@ -1,6 +1,6 @@
 # cshop
 
-A new Flutter project.
+flutter project for learning purpose, a workshop by CESS
 
 ## Getting Started
 
