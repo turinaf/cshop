@@ -76,11 +76,42 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Stack(
         //Bottom navigation
         children: [
+          /*ListView(
+            children: <Widget>[
+              Container(
+                height: 200,
+                padding: const EdgeInsets.all(40),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(30)),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black54,
+                          spreadRadius: 2,
+                          offset: Offset(3.0, 3.0),
+                          blurRadius: 2.0)
+                    ]),
+                child: Center(
+                  child: Image.asset(
+                    "assets/images/book.jpg",
+                    fit: BoxFit.cover,
+                  ),
+                  //   child: Text(
+                  //   "Entry 1",
+                  //   style: TextStyle(
+                  //     color: Colors.cyan,
+                  //     fontSize: 22,
+                  //   ),
+                  // )
+                ),
+              ),
+            ],
+          ),*/
           Positioned(
               bottom: MediaQuery.of(context).size.height * 0.01,
               left: MediaQuery.of(context).size.width * 0.04,
               child: Container(
-                width: MediaQuery.of(context).size.height * 0.26,
+                width: MediaQuery.of(context).size.height * 0.28,
                 height: MediaQuery.of(context).size.width * 0.1,
                 decoration: BoxDecoration(
                     gradient: LinearGradient(
@@ -88,7 +119,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                     ),
-                    borderRadius: BorderRadius.circular(16)),
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: kElevationToShadow[4]),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -101,6 +133,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           size: 30,
                           color: Colors.white,
                         )),
+                    Container(
+                      width: 2,
+                      height: 24,
+                      color: Colors.white,
+                    ),
                     IconButton(
                         onPressed: () {},
                         icon: Icon(
@@ -108,6 +145,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Colors.white,
                           size: 30,
                         )),
+                    Container(
+                      width: 2,
+                      height: 24,
+                      color: Colors.white,
+                    ),
                     IconButton(
                       icon: Icon(
                         Icons.shopping_cart,
@@ -115,6 +157,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         size: 30,
                       ),
                       onPressed: () {},
+                    ),
+                    Container(
+                      width: 2,
+                      height: 24,
+                      color: Colors.white,
                     ),
                     IconButton(
                       icon: Icon(
@@ -126,7 +173,23 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                 ),
-              ))
+              )),
+          Positioned(
+            top: 10,
+            left: 10,
+            child: Row(
+              children: [
+                const Text(
+                  "Categories",
+                  style: TextStyle(fontSize: 15),
+                ),
+                InkWell(
+                  onTap: () {},
+                  child: Icon(Icons.keyboard_arrow_down),
+                )
+              ],
+            ),
+          )
         ],
       ),
     );

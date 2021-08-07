@@ -1,7 +1,5 @@
-import 'package:cshop/screens/home.dart';
 import 'package:cshop/screens/welcome.dart';
 import 'package:flutter/material.dart';
-import 'custom/colors.dart';
 
 void main() {
   runApp(MyApp());
