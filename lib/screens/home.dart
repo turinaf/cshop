@@ -74,12 +74,13 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       body: Stack(
+        //Bottom navigation
         children: [
           Positioned(
               bottom: MediaQuery.of(context).size.height * 0.01,
               left: MediaQuery.of(context).size.width * 0.04,
               child: Container(
-                width: MediaQuery.of(context).size.height * 0.3,
+                width: MediaQuery.of(context).size.height * 0.26,
                 height: MediaQuery.of(context).size.width * 0.1,
                 decoration: BoxDecoration(
                     gradient: LinearGradient(
@@ -96,26 +97,36 @@ class _HomeScreenState extends State<HomeScreen> {
                           Navigator.pop(context);
                         },
                         icon: Icon(
-                          Icons.home,
+                          Icons.favorite,
+                          size: 30,
                           color: Colors.white,
                         )),
                     IconButton(
                         onPressed: () {},
                         icon: Icon(
-                          Icons.favorite_border_outlined,
+                          Icons.message,
                           color: Colors.white,
+                          size: 30,
                         )),
                     IconButton(
                       icon: Icon(
                         Icons.shopping_cart,
                         color: Colors.white,
+                        size: 30,
+                      ),
+                      onPressed: () {},
+                    ),
+                    IconButton(
+                      icon: Icon(
+                        Icons.account_circle,
+                        color: Colors.white,
+                        size: 30,
                       ),
                       onPressed: () {},
                     ),
                   ],
                 ),
-              )
-          )
+              ))
         ],
       ),
     );
