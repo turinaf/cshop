@@ -1,5 +1,6 @@
 import 'package:cshop/custom/colors.dart';
 import 'package:cshop/screens/home.dart';
+import 'package:cshop/screens/login.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -52,7 +53,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginPage()));
+                        },
                         child: Text(
                           "Login",
                           style: TextStyle(color: Colors.white),

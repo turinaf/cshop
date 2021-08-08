@@ -1,3 +1,4 @@
+import 'package:cshop/classes/items.dart';
 import 'package:cshop/custom/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool _isFolded = true;
+  List<ItemsModel> itemsList = [];
+  @override
+  void initState() {
+    super.initState();
+    itemsList = List.from(_itemsList);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -189,9 +197,31 @@ class _HomeScreenState extends State<HomeScreen> {
                 )
               ],
             ),
-          )
+          ),
+          Positioned(
+            top: 40,
+            left: 15,
+            right: 15,
+            child: ListView.builder(
+              itemCount: itemsList.length,
+              itemBuilder: (BuildContext context, index) {
+                return Container(
+                  height: 280,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                    image: AssetImage(_itemsList[index].imageurl),
+                  )),
+                );
+              },
+            ),
+          ),
         ],
       ),
     );
   }
 }
+
+List _itemsList = [
+  ItemsModel("Cookies", "assets/images/cookie.jpg"),
+  ItemsModel("Cookies", "assets/images/cookie.jpg"),
+];
