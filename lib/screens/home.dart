@@ -39,12 +39,33 @@ class _HomeScreenState extends State<HomeScreen> {
                         style:
                             TextStyle(color: CusColors.bgColor1, fontSize: 20),
                       ),
-                      Container(
+                      Expanded(
+                        child: Container(
+                          padding: EdgeInsets.only(left: 20),
+                          width: _isFolded ? 0 : 20,
+                          child: _isFolded
+                              ? null
+                              : TextField(
+                                  decoration: InputDecoration(
+                                    hintText: "Search items",
+                                  ),
+                                ),
+                        ),
+                      ),
+                      AnimatedContainer(
+                        duration: Duration(milliseconds: 400),
                         width: 50,
                         height: 50,
-                        child: Icon(
-                          Icons.search,
-                          color: CusColors.bgColor1,
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              _isFolded = !_isFolded;
+                            });
+                          },
+                          child: Icon(
+                            Icons.search,
+                            color: CusColors.bgColor1,
+                          ),
                         ),
                         decoration: BoxDecoration(
                             color: CusColors.bgColor1.withOpacity(0.2),
@@ -148,7 +169,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
                             icon: Icon(Icons.favorite),
                             color: Colors.white,
                             iconSize: 30,
@@ -181,7 +204,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: Colors.white,
                           ),
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
                             icon: Icon(Icons.account_circle),
                             color: Colors.white,
                             iconSize: 30,

@@ -10,6 +10,71 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool isLogin = true;
+  String _name = "";
+  String _email = "";
+  String _phone = "";
+  String password = "";
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  Widget _nameField() {
+    return TextFormField(
+      decoration: const InputDecoration(
+          labelText: "Name *",
+          hintText: "Enter your name",
+          icon: Icon(Icons.person)),
+      validator: (String? value) {
+        return (value == null || value.contains('@')
+            ? "Name is requied, don't use @"
+            : null);
+      },
+      onSaved: (String? value) {
+        _name = value!;
+      },
+    );
+  }
+
+  Widget _emailField() {
+    return TextFormField(
+      keyboardType: TextInputType.emailAddress,
+      decoration: InputDecoration(
+        labelText: "Email *",
+        hintText: "Enter your email",
+        icon: Icon(Icons.email),
+      ),
+      validator: (String? value) {
+        return value == null ? "Email is required" : null;
+      },
+      onSaved: (String? value) {
+        _email = value!;
+      },
+    );
+  }
+
+  Widget _phoneField() {
+    return TextFormField(
+      keyboardType: TextInputType.phone,
+      decoration: InputDecoration(
+          labelText: "Phone *",
+          hintText: "Phone number",
+          icon: Icon(Icons.phone)),
+      validator: (String? value) {
+        return value == null ? "Phone is require" : null;
+      },
+    );
+  }
+
+  Widget _passwordField() {
+    return TextFormField(
+      keyboardType: TextInputType.visiblePassword,
+      decoration: InputDecoration(
+          labelText: "Password *",
+          hintText: "Create password",
+          icon: Icon(Icons.lock)),
+      validator: (String? value) {
+        return value == null ? "Password is require" : null;
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,7 +154,70 @@ class _LoginPageState extends State<LoginPage> {
                   )
                 ],
               ),
-            )
+            ),
+            Container(
+                child: isLogin
+                    ? Container(
+                        margin: EdgeInsets.only(top: 10),
+                        width: MediaQuery.of(context).size.width * 0.82,
+                        child: Form(
+                          // Login form
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              _emailField(),
+                              _passwordField(),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              // ignore: deprecated_member_use
+                              RaisedButton(
+                                onPressed: () {},
+                                child: Text(
+                                  "Login",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 18),
+                                ),
+                                color: CusColors.bgColor1,
+                              )
+                            ],
+                          ),
+                        ),
+                      )
+                    : Container(
+                        margin: EdgeInsets.only(top: 18),
+                        padding: EdgeInsets.all(10),
+                        width: MediaQuery.of(context).size.width * 0.82,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: kElevationToShadow[5]),
+                        child: Form(
+                          // Signup Form
+
+                          child: Column(
+                            children: [
+                              _nameField(),
+                              _emailField(),
+                              _phoneField(),
+                              _passwordField(),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              // ignore: deprecated_member_use
+                              RaisedButton(
+                                onPressed: () {},
+                                child: Text(
+                                  "Sign up",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 18),
+                                ),
+                                color: CusColors.bgColor1,
+                              )
+                            ],
+                          ),
+                        ),
+                      ))
           ],
         ),
       ),
