@@ -21,207 +21,193 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 10.0,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 400),
-              width: _isFolded ? 40 : 186,
-              height: 40,
-              decoration: BoxDecoration(
-                  color: CusColors.bgColor1,
-                  boxShadow: kElevationToShadow[6],
-                  borderRadius: BorderRadius.circular(100)),
-              child: Row(
+      body: SafeArea(
+        child: Column(
+          children: [
+            Container(
+                width: MediaQuery.of(context).size.width,
+                height: 60,
+                decoration: BoxDecoration(
+                    color: Colors.white, boxShadow: kElevationToShadow[6]),
+                child: Padding(
+                  padding: EdgeInsets.only(left: 8.0, right: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "CShop",
+                        style:
+                            TextStyle(color: CusColors.bgColor1, fontSize: 20),
+                      ),
+                      Container(
+                        width: 50,
+                        height: 50,
+                        child: Icon(
+                          Icons.search,
+                          color: CusColors.bgColor1,
+                        ),
+                        decoration: BoxDecoration(
+                            color: CusColors.bgColor1.withOpacity(0.2),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(100))),
+                      ),
+                    ],
+                  ),
+                )),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.1,
+              child: Stack(
+                // ignore: deprecated_member_use
+                overflow: Overflow.visible,
+
                 children: [
-                  Expanded(
+                  Positioned(
+                    top: 10,
+                    left: 10,
+                    child: Row(
+                      children: [
+                        Text(
+                          "Categories",
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        InkWell(
+                          onTap: () {},
+                          child: Icon(Icons.keyboard_arrow_down),
+                        )
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                      top: 40,
+                      left: 10,
                       child: Container(
-                    padding: const EdgeInsets.only(left: 18, bottom: 4),
-                    child: _isFolded
-                        ? null
-                        : TextField(
-                            decoration: InputDecoration(
-                                contentPadding: EdgeInsets.only(top: 1),
-                                border: InputBorder.none,
-                                hintText: "Search an Item",
-                                hintStyle: TextStyle(color: Colors.white)),
+                        width: 368,
+                        height: MediaQuery.of(context).size.height,
+                        child: ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            itemCount: _itemsList.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Container(
+                                margin: EdgeInsets.only(top: 8),
+                                width: 240,
+                                height: 165,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                            _itemsList[index].imagePath),
+                                        fit: BoxFit.cover),
+                                    borderRadius: BorderRadius.circular(12),
+                                    boxShadow: kElevationToShadow[6]),
+                                child: Stack(
+                                  children: [
+                                    Positioned(
+                                      top: 10,
+                                      left: 10,
+                                      child: Text(
+                                        _itemsList[index].name,
+                                        style: TextStyle(fontSize: 16),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      bottom: 10,
+                                      right: 10,
+                                      child: Container(
+                                        width: 50,
+                                        height: 50,
+                                        child: IconButton(
+                                          icon: Icon(Icons.add_shopping_cart),
+                                          onPressed: () {},
+                                          iconSize: 30,
+                                        ),
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(100)),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              );
+                            }),
+                      )),
+                  Positioned(
+                    top: 614,
+                    left: 15,
+                    child: Container(
+                      width: 200,
+                      height: 48,
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                              colors: [CusColors.bgColor1, Colors.black],
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter),
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.favorite),
+                            color: Colors.white,
+                            iconSize: 30,
                           ),
-                  )),
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 400),
-                    child: InkWell(
-                        onTap: () {
-                          setState(() {
-                            _isFolded = !_isFolded;
-                          });
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.all(6),
-                          child: Icon(
-                            Icons.search,
+                          Container(
+                            width: 2,
+                            height: 25,
                             color: Colors.white,
                           ),
-                        )),
+                          IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.message),
+                            color: Colors.white,
+                            iconSize: 30,
+                          ),
+                          Container(
+                            width: 2,
+                            height: 25,
+                            color: Colors.white,
+                          ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.shopping_cart),
+                            color: Colors.white,
+                            iconSize: 30,
+                          ),
+                          Container(
+                            width: 2,
+                            height: 25,
+                            color: Colors.white,
+                          ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.account_circle),
+                            color: Colors.white,
+                            iconSize: 30,
+                          ),
+                        ],
+                      ),
+                    ),
                   )
                 ],
               ),
             ),
-          )
-        ],
-        leading: Container(
-          width: MediaQuery.of(context).size.width * 0.6,
-          padding: const EdgeInsets.only(left: 4.0),
-          child: Text(
-            "CShop",
-            style: TextStyle(color: CusColors.bgColor1, fontSize: 18),
-          ),
+          ],
         ),
-      ),
-      body: Stack(
-        //Bottom navigation
-        children: [
-          /*ListView(
-            children: <Widget>[
-              Container(
-                height: 200,
-                padding: const EdgeInsets.all(40),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(30)),
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black54,
-                          spreadRadius: 2,
-                          offset: Offset(3.0, 3.0),
-                          blurRadius: 2.0)
-                    ]),
-                child: Center(
-                  child: Image.asset(
-                    "assets/images/book.jpg",
-                    fit: BoxFit.cover,
-                  ),
-                  //   child: Text(
-                  //   "Entry 1",
-                  //   style: TextStyle(
-                  //     color: Colors.cyan,
-                  //     fontSize: 22,
-                  //   ),
-                  // )
-                ),
-              ),
-            ],
-          ),*/
-          Positioned(
-              bottom: MediaQuery.of(context).size.height * 0.01,
-              left: MediaQuery.of(context).size.width * 0.04,
-              child: Container(
-                width: MediaQuery.of(context).size.height * 0.28,
-                height: MediaQuery.of(context).size.width * 0.1,
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [CusColors.bgColor1, CusColors.bgColor2],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                    ),
-                    borderRadius: BorderRadius.circular(16),
-                    boxShadow: kElevationToShadow[4]),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: Icon(
-                          Icons.favorite,
-                          size: 30,
-                          color: Colors.white,
-                        )),
-                    Container(
-                      width: 2,
-                      height: 24,
-                      color: Colors.white,
-                    ),
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.message,
-                          color: Colors.white,
-                          size: 30,
-                        )),
-                    Container(
-                      width: 2,
-                      height: 24,
-                      color: Colors.white,
-                    ),
-                    IconButton(
-                      icon: Icon(
-                        Icons.shopping_cart,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                      onPressed: () {},
-                    ),
-                    Container(
-                      width: 2,
-                      height: 24,
-                      color: Colors.white,
-                    ),
-                    IconButton(
-                      icon: Icon(
-                        Icons.account_circle,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                      onPressed: () {},
-                    ),
-                  ],
-                ),
-              )),
-          Positioned(
-            top: 10,
-            left: 10,
-            child: Row(
-              children: [
-                const Text(
-                  "Categories",
-                  style: TextStyle(fontSize: 15),
-                ),
-                InkWell(
-                  onTap: () {},
-                  child: Icon(Icons.keyboard_arrow_down),
-                )
-              ],
-            ),
-          ),
-          Positioned(
-            top: 40,
-            left: 15,
-            right: 15,
-            child: ListView.builder(
-              itemCount: itemsList.length,
-              itemBuilder: (BuildContext context, index) {
-                return Container(
-                  height: 280,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                    image: AssetImage(_itemsList[index].imageurl),
-                  )),
-                );
-              },
-            ),
-          ),
-        ],
       ),
     );
   }
 }
 
+class ItemsModel {
+  String name;
+  String imagePath;
+  ItemsModel(this.name, this.imagePath);
+}
+
 List _itemsList = [
-  ItemsModel("Cookies", "assets/images/cookie.jpg"),
-  ItemsModel("Cookies", "assets/images/cookie.jpg"),
+  ItemsModel("Cookie one", "assets/images/cookie.jpg"),
+  ItemsModel("Cookie two", "assets/images/cookie.jpg"),
+  ItemsModel("Cookie three", "assets/images/cookie.jpg"),
+  ItemsModel("Cookie three", "assets/images/cookie.jpg"),
 ];
