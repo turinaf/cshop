@@ -142,7 +142,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               colors: [CusColors.bgColor1, Colors.black],
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter),
-                          borderRadius: BorderRadius.circular(20)),
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: kElevationToShadow[6]),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
