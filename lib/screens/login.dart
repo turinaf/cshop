@@ -2,7 +2,7 @@ import 'package:cshop/custom/colors.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  // const LoginPage({Key? key}) : super(key: key);
 
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -22,9 +22,12 @@ class _LoginPageState extends State<LoginPage> {
           hintText: "Enter your name",
           icon: Icon(Icons.person)),
       validator: (String? value) {
-        return (value == null || value.contains('@')
-            ? "Name is requied, don't use @"
-            : null);
+        if (value!.isEmpty) {
+          return "Name is required";
+        }
+        // return (value == null || value.contains('@')
+        //     ? "Name is requied, don't use @"
+        //     : null);
       },
       onSaved: (String? value) {
         _name = value!;
@@ -159,9 +162,15 @@ class _LoginPageState extends State<LoginPage> {
                 child: isLogin
                     ? Container(
                         margin: EdgeInsets.only(top: 10),
+                        padding: EdgeInsets.all(8),
                         width: MediaQuery.of(context).size.width * 0.82,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: kElevationToShadow[5]),
                         child: Form(
                           // Login form
+                          key: _formKey,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -172,7 +181,13 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               // ignore: deprecated_member_use
                               RaisedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  if (!_formKey.currentState!.validate()) {
+                                    return;
+                                  }
+                                  _formKey.currentState!.save();
+                                  print(_name);
+                                },
                                 child: Text(
                                   "Login",
                                   style: TextStyle(
@@ -194,7 +209,7 @@ class _LoginPageState extends State<LoginPage> {
                             boxShadow: kElevationToShadow[5]),
                         child: Form(
                           // Signup Form
-
+                          key: _formKey,
                           child: Column(
                             children: [
                               _nameField(),
@@ -206,14 +221,20 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               // ignore: deprecated_member_use
                               RaisedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  if (!_formKey.currentState!.validate()) {
+                                    return;
+                                  }
+                                  _formKey.currentState!.save();
+                                  print(_name);
+                                },
                                 child: Text(
                                   "Sign up",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 18),
                                 ),
                                 color: CusColors.bgColor1,
-                              )
+                              ),
                             ],
                           ),
                         ),
